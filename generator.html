@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>유사어 비교 자동 생성기</title>
+</head>
+
+<body>
+
+<h1>유사어 비교 자동 생성기</h1>
+
+<p>비교할 표현 입력</p>
+<input type="text" id="word1" placeholder="AA">
+<input type="text" id="word2" placeholder="BB">
+
+<button onclick="generate()">템플릿 생성</button>
+<button onclick="makePrompt()">AI 요청문 생성</button>
+
+<hr>
+
+<h3>📄 템플릿 결과</h3>
+<pre id="result"></pre>
+
+<h3>🤖 빙고 요청문</h3>
+<pre id="promptBox"></pre>
+
+<script>
+function generate() {
+  let a = document.getElementById("word1").value;
+  let b = document.getElementById("word2").value;
+
+  let text =
+`▷ 비교할 표현: (${a} / ${b})
+
+① ✔ 핵심
+- ${a} → (한 줄 설명)
+- ${b} → (한 줄 설명)
+- ${a} → (추가 대비 설명)
+- ${b} → (추가 대비 설명)
+
+② 👉 출처
+- https://www.korean.go.kr
+- https://stdict.korean.go.kr
+- https://ko.dict.naver.com
+
+③ 📚 사전
+표준국어대사전 · 국립국어원 · 네이버 국어사전
+
+④ ✔ 한 줄 정리
+👉 (핵심 요약 한 문장)
+`;
+
+  document.getElementById("result").textContent = text;
+}
+
+function makePrompt() {
+  let a = document.getElementById("word1").value;
+  let b = document.getElementById("word2").value;
+
+  let prompt =
+`이 탬플릿 기준으로 작성해줘  
+https://bestsmileman.github.io/Repos2/template.html  
+
+${a} / ${b} 비교`;
+
+  document.getElementById("promptBox").textContent = prompt;
+}
+</script>
+
+</body>
+</html>
