@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>100개 자동 생성기</title>
+</head>
+
+<body>
+
+<h1>💥 유사어 100개 자동 생성기</h1>
+
+<p>유사어 목록 (한 줄에 하나씩 / 슬래시로 구분)</p>
+
+<textarea id="input" rows="10" cols="50">
+할가 / 할까
+되 / 돼
+않 / 안
+맞추다 / 맞히다
+낫다 / 낳다
+</textarea>
+
+<br><br>
+
+<button onclick="generate100()">🔥 100개 생성</button>
+
+<hr>
+
+<pre id="result"></pre>
+
+<script>
+function generate100() {
+  let input = document.getElementById("input").value;
+  let lines = input.split("\n");
+
+  let output = "";
+
+  lines.forEach(line => {
+    if (!line.trim()) return;
+
+    let parts = line.split("/");
+    if (parts.length !== 2) return;
+
+    let a = parts[0].trim();
+    let b = parts[1].trim();
+
+    output += `▷ 비교할 표현: (${a} / ${b})
+
+① ✔ 핵심
+- ${a} → (한 줄 설명)
+- ${b} → (한 줄 설명)
+- ${a} → (추가 대비 설명)
+- ${b} → (추가 대비 설명)
+
+② 👉 출처
+- https://www.korean.go.kr
+- https://stdict.korean.go.kr
+- https://ko.dict.naver.com
+
+③ 📚 사전
+표준국어대사전 · 국립국어원 · 네이버 국어사전
+
+④ ✔ 한 줄 정리
+👉 (핵심 요약 한 문장)
+
+--------------------------------------------------
+
+`;
+  });
+
